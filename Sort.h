@@ -23,15 +23,23 @@ Step 2: implement bubbleSort()
 */
 
 void swapInt(int arr[], int i, int j) {
-
+        int temp = arr[j];
+        arr[j] = arr[i];
+        arr[i] = temp;
 }
 
 void bubblePass(int arr[], int n) {
-
+        for(int i = 0; i < (n-1); i++){
+                if(arr[i] > arr[i+1]){
+                        swapInt(arr, i, i+1);
+                }
+        }
 }
 
 void bubbleSort(int arr[], int n) {
-
+        for(n; n > 0; n--){
+                bubblePass(arr, n);
+        }
 }
 
 
@@ -55,11 +63,25 @@ Step 2: implement insertionSort()
 */
 
 void insertionStep(string arr[], int currentIndex) {
-
+        string temp = arr[currentIndex];
+        for(int j = 0; j < currentIndex; j++){
+                if(arr[j] > arr[j+1]){
+                        string temp2 = arr[j+1];
+                        arr[j+1] = arr[j];
+                        arr[j] = temp2;
+                }
+        }
+        while(arr[currentIndex - 1] > temp){
+                arr[currentIndex] = arr[currentIndex - 1];
+                arr[currentIndex - 1] = temp;
+                currentIndex--;
+        }
 }
 
 void insertionSort(string arr[], int n) {
-
+        for(int i = 1; i < n; i++){
+                insertionStep(arr, i);
+        }
 }
 
 
@@ -85,13 +107,24 @@ Step 3: Finally, use your two functions above to complete the following in newSo
 */
 
 void swap(double darray[], int index1, int index2) {
-
+        double temp = darray[index1];
+        darray[index1] = darray[index2];
+        darray[index2] = temp;
 }
 
 int minFind(double darray[], int n) {
-    return -1;
+        int minIndex = 0;
+        for(int i = 1; i < n; i++){
+                if(darray[i] < darray[minIndex]){
+                        minIndex = i;
+                }
+        }
+        return minIndex;
 }
 
 void newSort(double darray[], int n) {
-
+        for(int i = 0; i < n-1; i++){
+                int minIndex = minFind(darray + i, n - i) + i;
+                swap(darray, i, minIndex);
+        }
 }
